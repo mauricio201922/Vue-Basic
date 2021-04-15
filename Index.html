@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Aprendendo VUE</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <!-- GET: Lists -->
+        <h1>GET: LISTS</h1>
+        <div id="teste">
+            <ul>
+                <li v-for="product in products">
+                    {{ product.text }}
+                </li>
+            </ul>
+        </div>
+
+        <!-- GET: Reverse -->
+        <h1>GET: REVERSE</h1>
+        <div id="teste2">
+            <p>{{ message }}</p>
+            <button v-on:click="reverseMessage">Reverse Message</button>
+        </div>
+
+        <!-- GET: Usando Input -->
+        <h1>VUE INPUT</h1>
+        <div id="teste3">
+            <p>{{ message }}</p>
+            <input v-model="message">
+        </div>
+
+        <!-- GET: Todo Item -->
+        <h1>GET: TODO ITEM</h1>
+        <div id="app4">
+            <ol>
+                <todo-item></todo-item>
+                <todo-item></todo-item>
+            </ol>
+        </div>
+    </body>
+</html>
+
+<script>
+    /* Lista de dados */
+    const app = new Vue({
+        el: '#teste',
+        data: {
+            products: [
+                { id: 1, text: 'Learn JavaScript' },
+                { id: 2, text: 'Learn Vue' },
+                { id: 3, text: 'Bunito' }
+            ]
+        }
+    })
+
+    /* Fazendo conversão da palavra */
+    const app2 = new Vue({
+        el: '#teste2',
+        data: {
+            message: 'Hello World!'
+        },
+        methods: {
+            reverseMessage: function() {
+                this.message = this.message.split('').reverse().join('')
+            }
+        }
+    })
+
+    /* Fazendo input para mostrar a palavra via VUE */
+    const app3 = new Vue({
+        el: '#teste3',
+        data: {
+            message: ''
+        }
+    })
+
+    /* Fazendo um tamplate */
+
+    Vue.component('todo-item',{
+        template: '<li>This is a todo</li>'
+    })
+
+    const app4 = new Vue({
+        el: '#app4'
+    })
+</script>
